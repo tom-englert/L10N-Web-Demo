@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "L10N": {
@@ -119,6 +119,11 @@
           }
         }
       }
-    }},
-  "defaultProject": "L10N"
+    }
+  },
+  "defaultProject": "L10N",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics",
+    "analytics": "a05a5f0a-93ae-4dcf-89ca-36c6b087fafd"
+  }
 }
