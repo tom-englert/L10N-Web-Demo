@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="MAINPAGE_APPNAME" xml:space="preserve">
+    <value>Lokalisierte Anwendung</value>
+  </data>
+  <data name="MAINPAGE_TITLE" xml:space="preserve">
+    <value>Willkommen</value>
+  </data>
+</root>
