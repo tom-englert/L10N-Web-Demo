@@ -31,7 +31,7 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(loadL10N),
       map(({culture}) => culture),
-      filter(culture => !culture),
+      filter(culture => !culture || culture === 'en'),
       map(data => loadL10NReset())
     ));
 }
