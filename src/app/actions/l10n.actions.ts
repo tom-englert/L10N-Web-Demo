@@ -10,6 +10,6 @@ export const loadL10NSuccess = createAction(
   props<{ data: any }>()
 );
 
-export const loadL10NReset = createAction(
-  '[L10N] Load L10Ns Reset',
+export const resetL10N = createAction(
+  '[L10N] Reset L10Ns',
 );

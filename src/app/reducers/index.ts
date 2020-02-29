@@ -5,7 +5,7 @@ import {
   on
 } from '@ngrx/store';
 import {environment} from '../../environments/environment';
-import {loadL10N, loadL10NReset, loadL10NSuccess} from '../actions/l10n.actions';
+import {loadL10N, resetL10N, loadL10NSuccess} from '../actions/l10n.actions';
 import {Resources} from '../resources';
 
 export interface L10nState {
@@ -22,15 +22,11 @@ export interface State {
 
 export const l10nReducer = createReducer(
   initialL10NState,
-  on(loadL10N, (state, {culture}) => {
-    console.log('l10nReducer:', 'load', state, culture);
-    return state;
-  }),
   on(loadL10NSuccess, (state, {data}) => {
     console.log('l10nReducer:', 'success', state, data);
     return {...state, resources: data.Resources};
   }),
-  on(loadL10NReset, (state, {}) => {
+  on(resetL10N, (state, {}) => {
     console.log('l10nReducer:', 'reset', state);
     return {...state, resources: new Resources()};
   })
