@@ -3,7 +3,7 @@
   <data name="MAINPAGE_APPNAME" xml:space="preserve">
     <value>Lokalisierte Anwendung</value>
   </data>
-  <data name="MAINPAGE_TITLE" xml:space="preserve">
+  <data name="MAINPAGE_WELCOME" xml:space="preserve">
     <value>Willkommen</value>
   </data>
 </root>

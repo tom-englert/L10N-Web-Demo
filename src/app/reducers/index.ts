@@ -23,11 +23,9 @@ export interface State {
 export const l10nReducer = createReducer(
   initialL10NState,
   on(loadL10NSuccess, (state, {data}) => {
-    console.log('l10nReducer:', 'success', state, data);
-    return {...state, resources: data.Resources};
+    return {...state, resources: { ...new Resources(), ...data.Resources}};
   }),
   on(resetL10N, (state, {}) => {
-    console.log('l10nReducer:', 'reset', state);
     return {...state, resources: new Resources()};
   })
 );

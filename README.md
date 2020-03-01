@@ -1,8 +1,12 @@
 # L10N
 
-This demo project shows how to localize your web application with a few clicks using reactive state management in combination with [ResXResourceManager](https://github.com/tom-englert/ResXResourceManager).
+This demo project shows how to localize your web application with just a few clicks using reactive state management in combination with [ResXResourceManager](https://github.com/tom-englert/ResXResourceManager).
 
 This sample code is based on [Angular](https://angular.io/) and [ngrx](https://ngrx.io/), but it should work fine with any combination of UI framework an reactive state management.   
+
+## Watch the demo
+
+[![Demo Video](http://img.youtube.com/vi/z4YybsnF2UU/0.jpg)](http://www.youtube.com/watch?v=z4YybsnF2UU "Demo Video")
 
 ## Installing ResXResourceManager
 You will need the latest version of ResXResourceManager. If you don't have installed it yet, get the latest version as described [here](https://github.com/tom-englert/ResXResourceManager/blob/master/README.md#installation).
@@ -93,7 +97,7 @@ Finally we need the reducers to update the state with the loaded resources:
 export const l10nReducer = createReducer(
   initialL10NState,
   on(loadL10NSuccess, (state, {data}) => {
-    return {...state, resources: data.Resources};
+    return {...state, resources: { ...new Resources(), ...data.Resources}};
   }),
   on(resetL10N, (state, {}) => {
     return {...state, resources: new Resources()};
