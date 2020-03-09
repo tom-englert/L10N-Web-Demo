@@ -6,7 +6,7 @@ This sample code is based on [Angular](https://angular.io/) and [ngrx](https://n
 
 ## Watch the demo
 
-[![Demo Video](http://img.youtube.com/vi/z4YybsnF2UU/0.jpg)](http://www.youtube.com/watch?v=z4YybsnF2UU "Demo Video")
+[![Demo Video](http://img.youtube.com/vi/qJA4dGdbUbc/0.jpg)](http://www.youtube.com/watch?v=qJA4dGdbUbc "Demo Video")
 
 ## Installing ResXResourceManager
 You will need the latest version of ResXResourceManager. If you don't have installed it yet, get the latest version as described [here](https://github.com/tom-englert/ResXResourceManager/blob/master/README.md#installation).
