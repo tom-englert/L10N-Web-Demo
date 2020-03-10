@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {loadL10N, resetL10N, loadL10NSuccess} from './actions/l10n.actions';
-import {catchError, filter, map, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {catchError, filter, map, switchMap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {EMPTY} from 'rxjs';
+import {EMPTY, Observable} from 'rxjs';
 
 @Injectable()
 export class AppEffects {
@@ -15,14 +15,7 @@ export class AppEffects {
       ofType(loadL10N),
       map(({culture}) => culture),
       filter(culture => !!culture),
-      map(culture => './assets/resources.' + culture + '.json'),
-      switchMap(url => this.httpClient.get(url).pipe(
-        map(data => loadL10NSuccess({data})),
-        catchError((err, caught) => {
-          console.log('resource not found:', err);
-          return EMPTY;
-        })
-      )),
+      switchMap(culture => this.loadResources(culture))
     ));
 
   resetL10N$ = createEffect(() =>
@@ -32,4 +25,16 @@ export class AppEffects {
       filter(culture => !culture || culture === 'en'),
       map(data => resetL10N())
     ));
+
+  private loadResources(culture: string): Observable<any> {
+    const url = './assets/resources.' + culture + '.json';
+    const request$ = this.httpClient.get(url).pipe(
+      map(data => loadL10NSuccess({data, culture})),
+      catchError((err, caught) => {
+        console.log('resource not found:', culture, err);
+        return EMPTY;
+      }));
+
+    return request$;
+  }
 }

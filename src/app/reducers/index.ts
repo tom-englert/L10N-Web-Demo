@@ -10,10 +10,12 @@ import {Resources} from '../resources';
 
 export interface L10nState {
   resources: Resources;
+  culture: string;
 }
 
 const initialL10NState: L10nState = {
-  resources: new Resources()
+  resources: new Resources(),
+  culture: 'en'
 };
 
 export interface State {
@@ -22,11 +24,11 @@ export interface State {
 
 export const l10nReducer = createReducer(
   initialL10NState,
-  on(loadL10NSuccess, (state, {data}) => {
-    return {...state, resources: { ...new Resources(), ...data.Resources}};
+  on(loadL10NSuccess, (state, {data, culture}) => {
+    return {...state, resources: { ...new Resources(), ...data.Resources}, culture};
   }),
   on(resetL10N, (state, {}) => {
-    return {...state, resources: new Resources()};
+    return initialL10NState;
   })
 );
 

@@ -7,7 +7,7 @@ export const loadL10N = createAction(
 
 export const loadL10NSuccess = createAction(
   '[L10N] Load L10Ns Success',
-  props<{ data: any }>()
+  props<{ data: any, culture: string }>()
 );
 
 export const resetL10N = createAction(
