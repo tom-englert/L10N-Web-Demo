@@ -8,6 +8,29 @@ This sample code is based on [Angular](https://angular.io/) and [ngrx](https://n
 
 [![Click to watch the demo video](http://img.youtube.com/vi/qJA4dGdbUbc/0.jpg)](http://www.youtube.com/watch?v=qJA4dGdbUbc "Click to watch the demo video")
 
+## The concept
+Neutral (usually en-US) resources are provided not as .json files but as one or more typescript classes, mapping the keys to their default text:
+```ts
+export class Resources {
+  MAINPAGE_WELCOME = "Welcome";
+  MAINPAGE_APPNAME = "Localized App";
+}
+```
+
+```ts
+resources = new Resources();
+```
+This file is available at compile time, so you can use it with type checking and intellisense.
+```ts
+const text = resources.MAINPAGE_WELCOME;
+```
+
+All other languages are provides as .json files, so at runtime the `Resources` class can be easily overwritten dynamically with their localized content:
+```ts
+const url = './assets/resources.' + culture + '.json';
+const resources$ = this.httpClient.get(url).pipe(map(data => { ...new Resources(), ...data.Resources}));
+```
+
 ## Installing ResXResourceManager
 You will need at latest version 1.39 of ResXResourceManager. If you don't have installed it yet, get the latest version as described [here](https://github.com/tom-englert/ResXResourceManager/blob/master/README.md#installation).
 
