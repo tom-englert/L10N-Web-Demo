@@ -25,7 +25,16 @@ This file is available at compile time, so you can use it with type checking and
 const text = resources.MAINPAGE_WELCOME;
 ```
 
-All other languages are provides as .json files, so at runtime the `Resources` class can be easily overwritten dynamically with their localized content:
+All other languages are provides as .json files, so at runtime the members of the `Resources` class can be easily overwritten dynamically with their localized content:
+```json
+{
+  "Resources": {
+    "MAINPAGE_APPNAME": "Lokalisierte Anwendung",
+    "MAINPAGE_WELCOME": "Willkommen"
+  }
+}
+```
+
 ```ts
 const url = './assets/resources.' + culture + '.json';
 const resources$ = this.httpClient.get(url).pipe(map(data => { ...new Resources(), ...data.Resources}));
