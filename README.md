@@ -31,8 +31,10 @@ const url = './assets/resources.' + culture + '.json';
 const resources$ = this.httpClient.get(url).pipe(map(data => { ...new Resources(), ...data.Resources}));
 ```
 
+While maintaining the translations in [ResXResourceManager](https://github.com/tom-englert/ResXResourceManager), the typescript and json files will be automatically generated or updated.
+
 ## Installing ResXResourceManager
-You will need at latest version 1.39 of ResXResourceManager. If you don't have installed it yet, get the latest version as described [here](https://github.com/tom-englert/ResXResourceManager/blob/master/README.md#installation).
+You will need at latest version 1.39 of [ResXResourceManager](https://github.com/tom-englert/ResXResourceManager). If you don't have installed it yet, get the latest version as described [here](https://github.com/tom-englert/ResXResourceManager/blob/master/README.md#installation).
 
 The Visual Studio extension is recommended, but if you don't have VisualStudio, you can use the standalone version as well. Just note that the standalone version does not support the "Move To Resource" feature.  
 
