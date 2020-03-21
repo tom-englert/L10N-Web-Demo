@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
 
   resources$: Observable<Resources>;
   l10n$: Observable<L10nState>;
+  userName = 'Tom';
 
   constructor(private readonly store: Store<State>) {
     console.log('ctor');

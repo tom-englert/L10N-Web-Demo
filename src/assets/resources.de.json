@@ -1,6 +1,7 @@
 {
+  "_comment": "Auto-generated; do not modify!",
   "Resources": {
     "MAINPAGE_APPNAME": "Lokalisierte Anwendung",
-    "MAINPAGE_WELCOME": "Willkommen"
+    "MAINPAGE_WELCOME_TEMPLATE": "Willkommen ${User}!"
   }
 }

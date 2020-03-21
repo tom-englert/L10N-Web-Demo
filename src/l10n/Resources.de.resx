@@ -4,6 +4,6 @@
     <value>Lokalisierte Anwendung</value>
   </data>
   <data name="MAINPAGE_WELCOME" xml:space="preserve">
-    <value>Willkommen</value>
+    <value>Willkommen ${User}!</value>
   </data>
 </root>

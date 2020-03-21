@@ -25,7 +25,8 @@ export interface State {
 export const l10nReducer = createReducer(
   initialL10NState,
   on(loadL10NSuccess, (state, {data, culture}) => {
-    return {...state, resources: { ...new Resources(), ...data.Resources}, culture};
+    const resources = Object.assign(new Resources(), data.Resources);
+    return {...state, resources, culture};
   }),
   on(resetL10N, (state, {}) => {
     return initialL10NState;
