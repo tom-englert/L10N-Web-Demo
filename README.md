@@ -8,7 +8,7 @@ This sample code is based on [Angular](https://angular.io/) and [ngrx](https://n
 
 [![Click to watch the demo video](http://img.youtube.com/vi/qJA4dGdbUbc/0.jpg)](http://www.youtube.com/watch?v=qJA4dGdbUbc "Click to watch the demo video")
 
-## The concept
+## The Concept
 Neutral (usually en-US) resources are provided not as .json files but as one or more typescript classes, mapping the keys to their default text:
 ```ts
 export class Resources {
@@ -41,6 +41,25 @@ const resources$ = this.httpClient.get(url).pipe(map(data => { ...new Resources(
 ```
 
 While maintaining the translations in [ResXResourceManager](https://github.com/tom-englert/ResXResourceManager), the typescript and json files will be automatically generated or updated.
+## String Placeholders
+Replacing placeholders with values at runtime is also supported in a type-safe manner.
+
+Consider a resource `"MAINPAGE_WELCOME"` with the value `"Welcome $(User)!"`: 
+
+It will be compiled as:
+```ts
+export class Resources {
+  private MAINPAGE_WELCOME_TEMPLATE = "Welcome ${User}!";
+  MAINPAGE_WELCOME = (args: { User: string }) => {
+    return formatString(this.MAINPAGE_WELCOME_TEMPLATE, args);
+  }
+}
+```
+so the usage in your code will look like:
+```ts
+const text = resources.MAINPAGE_WELCOME({ User: 'tom'})
+```
+Again providing insufficient formatting parameters will result in compile time errors.
 
 ## Installing ResXResourceManager
 You will need at latest version 1.39 of [ResXResourceManager](https://github.com/tom-englert/ResXResourceManager). If you don't have installed it yet, get the latest version as described [here](https://github.com/tom-englert/ResXResourceManager/blob/master/README.md#installation).
@@ -131,7 +150,8 @@ Finally we need the reducers to update the state with the loaded resources:
 export const l10nReducer = createReducer(
   initialL10NState,
   on(loadL10NSuccess, (state, {data}) => {
-    return {...state, resources: { ...new Resources(), ...data.Resources}};
+    const resources = Object.assign(new Resources(), data.Resources);
+    return {...state, resources };
   }),
   on(resetL10N, (state, {}) => {
     return {...state, resources: new Resources()};
