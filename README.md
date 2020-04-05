@@ -38,7 +38,7 @@ All other languages are provides as .json files, so at runtime the members of th
 
 ```ts
 const url = './assets/resources.' + culture + '.json';
-const resources$ = this.httpClient.get(url).pipe(map(data => { ...new Resources(), ...data.Resources}));
+const resources$ = this.httpClient.get(url).pipe(map(data => Object.assign(new Resources(), data.Resources)));
 ```
 
 While maintaining the translations in [ResXResourceManager](https://github.com/tom-englert/ResXResourceManager), the typescript and json files will be automatically generated or updated.
@@ -63,9 +63,11 @@ const text = resources.MAINPAGE_WELCOME({ User: 'tom'})
 Also this will not compile if insufficient formatting parameters are provided.
 
 ## Installing ResXResourceManager
-You will need at latest version 1.39 of [ResXResourceManager](https://github.com/tom-englert/ResXResourceManager). If you don't have installed it yet, get the latest version as described [here](https://github.com/tom-englert/ResXResourceManager/blob/master/README.md#installation).
+You will need at latest version 1.40 of [ResXResourceManager](https://github.com/tom-englert/ResXResourceManager). 
+If you don't have installed it yet, get the latest version as described [here](https://github.com/tom-englert/ResXResourceManager/blob/master/README.md#installation).
 
-The Visual Studio extension is recommended, but if you don't have VisualStudio, you can use the standalone version as well. Just note that the standalone version does not support the "Move To Resource" feature.
+The Visual Studio extension is recommended, but if you don't have VisualStudio, you can use the standalone version as well. 
+Just note that the standalone version does not support the "Move To Resource" feature.
 
 ## Setting up your application
 If you start from the scratch, generate a [new application](https://angular.io/cli/generate) and setup the [ngrx store](https://ngrx.io/guide/schematics).
@@ -126,7 +128,7 @@ and one optional to reset the resources to the neutral defaults.
     this.actions$.pipe(
       ofType(loadL10N),
       map(({culture}) => culture),
-      filter(culture => !!culture),
+      filter(culture => culture && culture !== 'en'),
       map(culture => './assets/resources.' + culture + '.json'),
       switchMap(url => this.httpClient.get(url).pipe(
         map(data => loadL10NSuccess({data})),
