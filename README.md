@@ -1,15 +1,18 @@
 # L10N
 
-This demo project shows how to localize your web application with just a few clicks using reactive state management in combination with [ResXResourceManager](https://github.com/dotnet/ResXResourceManager).
+This demo project shows how to localize your web application with just a few clicks using
+reactive state management in combination with [ResXResourceManager](https://github.com/dotnet/ResXResourceManager).
 
-This sample code is based on [Angular](https://angular.io/) and [ngrx](https://ngrx.io/), but it should work fine with any other UI framework and state management.
+This sample code is based on [Angular](https://angular.io/) and [ngrx](https://ngrx.io/),
+but it should work fine with any other UI framework and state management.
 
 ## Watch the demo video
 
 [![Click to watch the demo video](http://img.youtube.com/vi/qJA4dGdbUbc/0.jpg)](http://www.youtube.com/watch?v=qJA4dGdbUbc "Click to watch the demo video")
 
 ## The Concept
-Neutral (usually en-US) resources are provided not as .json files but as one or more typescript classes, mapping the keys to their default text:
+Neutral (usually en-US) resources are provided not as .json files but as one or more typescript classes,
+mapping the keys to their default text:
 ```ts
 export class Resources {
   MAINPAGE_WELCOME = "Welcome";
@@ -20,7 +23,7 @@ export class Resources {
 ```ts
 resources = new Resources();
 ```
-This file is available at compile time, so you can use it with type checking and intellisense.
+This file is available at compile time, so you can benefit from static type checking and code completion.
 ```ts
 const text = resources.MAINPAGE_WELCOME;
 ```
@@ -43,7 +46,7 @@ const resources$ = this.httpClient.get(url).pipe(map(data => Object.assign(new R
 
 While maintaining the translations in [ResXResourceManager](https://github.com/dotnet/ResXResourceManager), the typescript and json files will be automatically generated or updated.
 ## String Placeholders
-Replacing placeholders with values at runtime is also supported in a type-safe manner.
+Replacing placeholders with values at runtime is also supported with static type support.
 
 Consider a resource `"MAINPAGE_WELCOME"` with the value `"Welcome $(User)!"`:
 
@@ -60,7 +63,7 @@ so the usage in your code will look like:
 ```ts
 const text = resources.MAINPAGE_WELCOME({ User: 'tom'})
 ```
-Also this will not compile if insufficient formatting parameters are provided.
+Again code completion will support you to write correct code that will not compile if you provide insufficient or wrong formatting parameters.
 
 ## Installing ResXResourceManager
 You will need at latest version 1.40 of [ResXResourceManager](https://github.com/dotnet/ResXResourceManager). 
