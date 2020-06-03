@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {L10nState, selectL10n, State} from './reducers';
+import {L10nState, selectL10n, loadL10N, State} from './+state';
 import {Observable} from 'rxjs';
 import {Resources} from './resources';
-import {loadL10N} from './actions/l10n.actions';
 
 @Component({
   selector: 'app-root',

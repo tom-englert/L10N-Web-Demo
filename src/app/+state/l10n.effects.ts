@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {loadL10N, resetL10N, loadL10NSuccess} from './actions/l10n.actions';
+import {loadL10N, resetL10N, loadL10NSuccess} from './l10n.actions';
 import {catchError, filter, map, switchMap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {EMPTY, Observable} from 'rxjs';
 
 @Injectable()
-export class AppEffects {
+export class L10nEffects {
   constructor(private actions$: Actions, private httpClient: HttpClient) {
   }
 
